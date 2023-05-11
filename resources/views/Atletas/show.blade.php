@@ -1,17 +1,32 @@
 <x-admin-layout>
     
-    <div class="shadow-md sm:rounded-lg grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 h-64 sm:h-40  ">
-        <div class="bg-blue-200">
-            Titulo
+    <div class="flex p-6 font-mono w-full">
+        <div class="flex-none w-48 h-48 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-gray-400">
+            <img src="{{$atleta->imagen_url}}" alt="" class="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
         </div>
-        <div class="bg-slate-300 sm:col-span-2 lg:col-span-3">
-            <h1 class="font-bold font-sans text-5xl m-2">{{$atleta->primer_nombre}} <span class="text-3xl text-gray-600">{{$atleta->segundo_nombre}}</span> </h1>
-            <h2 class="font-bold font-sans text-4xl ml-2 mb-3">{{$atleta->primer_apellido}} <span class="text-3xl text-gray-600">{{$atleta->segundo_apellido}}</span></h2>
-            <span class="bg-green-100 text-green-800 text-lg font-medium mx-4 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$atleta->categoria->nombre}}</span>
-        </div>  
-        
-            <label>No. Documento: <span>{{$atleta->documento}}</span></label>
-             
+        <div class="relative flex flex-wrap items-baseline pb-6 before:bg-gray-700 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6 w-full shadow-2xl">
+            <h1 class="relative w-full flex-none text-2xl font-semibold text-white ml-6">
+              {{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}
+            </h1>
+            <h1 class="relative w-full flex-none mb-2 text-2xl font-semibold text-white ml-6">
+                {{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}
+              </h1>
+            <div class="relative ml-6">
+                <h2 class="text-xl text-teal-400">
+                -- {{$atleta->categoria->nombre}} --
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+        <div class="">
+            <label class="mb-2 text-md md:text-sm font-medium text-gray-900 dark:text-white">Documento</label>
+            <input type="text" class="p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-md md:text-sm focus:ring-blue-500 focus:border-blue-500" value="{{number_format($atleta->documento, '0', ',', '.')}}" disabled>
+        </div>
+        <div class="">
+            <label class="mb-2 text-md md:text-sm font-medium text-gray-900 dark:text-white">Sexo</label>
+            <input type="text" class="p-2 block sm:inline text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-md md:text-sm focus:ring-blue-500 focus:border-blue-500" value="{{$atleta->sexo}}" disabled>
+        </div>
     </div>
 
 </x-admin-layout>

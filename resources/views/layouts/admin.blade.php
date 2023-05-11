@@ -21,7 +21,7 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-gray-50">
+<body class="font-sans antialiased bg-gray-100">
     <x-banner />
     @php
         $links = [
