@@ -1,6 +1,6 @@
 <x-admin-layout>
 
-    <div class="w-full bg-gray-900 py-5 mb-6">
+    <div class="w-full bg-gray-800 py-5 mb-6">
         <H1 class="font-bold text-4xl text-white text-center">LISTADO DE CATEGORIAS</H1> 
     </div>
 
@@ -35,7 +35,7 @@
                             {{$categoria->nombre}}
                         </th>
                         <td class="px-6 py-4 text-center">
-                            {{$categoria->Entrenador}}
+                            {{$categoria->entrenador}}
                         </td>
                         <td class="px-6 py-4 text-center">
                             <a href="{{route('categorias.edit', $categoria)}}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Edit</a>

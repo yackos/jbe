@@ -11,6 +11,7 @@ class Categoria extends Model
 
     protected $fillable = [
         'nombre',
+        'entrenador'
     ];
 
     // Relación Uno a Uno Inversa con Atletas

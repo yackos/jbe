@@ -12,7 +12,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::orderBy('nombre')->get();
 
         return view('categorias.index', compact('categorias'));
     }
@@ -30,7 +30,20 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:20',
+            'entrenador' => 'required|string|max:20'
+        ]);
+
+        $categoria = Categoria::create([
+            'nombre' => $request->nombre,
+            'entrenador' => $request->entrenador
+        ]);
+
+        session()->flash('flash.banner', 'Categoria Creada con Exito');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -54,7 +67,17 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:20',
+            'entrenador' => 'required|string|max:20'
+        ]);
+
+        $categoria->update($request->all());
+
+        session()->flash('flash.banner', 'Categoria Actualizada con Exito');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('categorias.index');
     }
 
     /**
