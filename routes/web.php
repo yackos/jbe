@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\TallaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +33,7 @@ Route::middleware([
 Route::resource('atletas', AtletaController::class);
 
 Route::resource('categorias', CategoriaController::class);
+
+Route::resource('tallas', TallaController::class);
 
 

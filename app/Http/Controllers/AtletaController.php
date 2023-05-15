@@ -61,7 +61,6 @@ class AtletaController extends Controller
      */
     public function show(Atleta $atleta)
     {
-        
         return view('atletas.show', compact('atleta'));
     }
 
@@ -80,7 +79,7 @@ class AtletaController extends Controller
     public function update(Request $request, Atleta $atleta)
     {
         $request->validate([
-            'documento' => 'required|integer|unique:atletas,documento',
+            'documento' => 'required|integer|unique:atletas,documento,' . $atleta->id,
             'primer_nombre' => 'required|string|max:20',
             'segundo_nombre' => 'string|max:20',
             'primer_apellido' => 'required|string|max:20',
