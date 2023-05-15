@@ -527,6 +527,6 @@
                 </table>
             </div>
         </div>
-    
+    <h2 class="text-lg font-semibold text-center w-full bg-violet-900 text-white">TITULO DE PRUEBA</h2> 
 
 </x-admin-layout>
