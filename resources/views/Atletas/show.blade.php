@@ -80,13 +80,10 @@
 
     <div class="bg-gray-200 rounded-lg shadow p-3 mt-8">
         <div class="flex p-6 font-mono w-full">
-            <div
-                class="flex-none w-48 h-48 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-gray-400 before:rounded-lg before:shadow-lg">
-                <img src="{{ $atleta->imagen }}" alt="{{ $atleta->primer_nombre }}_{{ $atleta->primer_apellido }}"
-                    class="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
+            <div class="flex-none w-48 h-48 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-gray-400 before:rounded-lg before:shadow-lg">
+                <img src="{{ $atleta->imagen }}" alt="{{ $atleta->primer_nombre }}_{{ $atleta->primer_apellido }}" class="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
             </div>
-            <div
-                class="relative flex flex-wrap items-baseline pb-6 before:bg-gray-700 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6 w-full shadow-2xl">
+            <div class="relative flex flex-wrap items-baseline pb-6 before:bg-gray-700 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6 w-full">
                 <h1 class="relative w-full flex-none text-2xl font-semibold text-white ml-6">
                     {{ $atleta->primer_nombre }} {{ $atleta->segundo_nombre }}
                 </h1>
@@ -163,6 +160,16 @@
         <div class="bg-gray-200 rounded-lg shadow p-3 mt-8">
             <h2 class="text-2xl font-semibold text-center mt-2">TALLAS DEL ATLETA</h2>
             <p class="text-sm text-center w-full">Tomadas el {{ date('d/m/Y', strtotime($talla->created_at)) }}</p>
+            <div class="w-full grid justify-items-center mt-4">
+                <a href="" class="inline-flex mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2 text-center items-center">
+                    Generar Indices, Phantoms y Somatotipos
+                    <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+                
 
             <div class="relative overflow-y-auto shadow-md rounded-lg mt-6 md:w-3/4 mx-auto">
                 <table class="w-full text-sm text-left text-gray-500 table-fixed">

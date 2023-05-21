@@ -38,7 +38,6 @@ return new class extends Migration
             $table->string('abdominal');
             $table->string('pmuslo_medio');
             $table->string('pantorrilla');
-            $table->longText('observaciones');
             $table->timestamps();
         });
     }

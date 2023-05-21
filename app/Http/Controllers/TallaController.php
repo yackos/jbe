@@ -104,9 +104,56 @@ class TallaController extends Controller
         $atleta = Atleta::find($id);
         $tallas = Talla::where('atleta_id', '=', $atleta->id)->get()->sortByDesc('created_at');
         $i = 1;
+        $talla = Talla::where('atleta_id', '=', $atleta->id)->get()->last();
 
+        // Indices
+        $s6pl = $talla->triceps + $talla->subescapular + $talla->supraespinal + $talla->abdominal + $talla->pmuslo_medio + $talla->pantorrilla;
+        $imc = $talla->peso / (($talla->talla * $talla->talla)* 0.0001);
+        $s3pl = (($talla->triceps + $talla->subescapular + $talla->supraespinal) * 170.18) / $talla->talla;
+        $hwr = $talla->talla / pow($talla->peso, 0.3333);
+
+        // Somatotipos
+        $endo = -0.7182 + (0.1451 * $s3pl) - (0.00068 * pow($s3pl, 2)) + (0.0000014 * pow($s3pl, 3));
+        $meso = ( 0.858 * $talla->humeral ) + ( 0.601 * $talla->femoral ) + ( 0.188 * ( $talla->brazo_flex_ten - ( $talla->triceps / 10 ) ) ) + ( 0.161 * ( $talla->pantorrilla_max - ( $talla->pantorrilla / 10) ) ) - ( $talla->talla * 0.131 ) + 4.5;
+
+        if ($hwr >= 40.75) {
+            $ecto = 0.732 * $hwr - 28.58;
+        } elseif ($hwr >= 38.25) {
+            $ecto = 0.463 * $hwr - 17.63;            
+        } else {
+            $ecto = 0.1;
+        }
         
-        return view('tallas.show', compact('id', 'atleta', 'tallas', 'i'));
+        $coord_x = $ecto - $endo;
+        $coord_y = 2 * $meso - ($endo + $ecto);
+
+        // Phantoms
+        $masa_corp = ( $talla->peso * pow(170.18 / $talla->talla, 3) - 64.58 ) / 8.6;
+        $talla_sen = ( $talla->talla_sentada * ( 170.181 / $talla->talla ) - 89.92 ) / 4.5;
+        $biacromial = ( $talla->biacromial * (170.18 / $talla->talla ) - 38.04 ) / 1.92;
+        $torax_tran = ( $talla->torax_transv * ( 170.18 / $talla->talla ) - 27.92 ) / 1.74;
+        $torax_ant = ( $talla->torax_antpost * ( 170.18 / $talla->talla ) - 17.5 ) / 1.38;
+        $bi_lio = ( $talla->bi_liocrestideo * ( 170.18 / $talla->talla ) - 28.84 ) / 1.75;
+        $humeral = ( $talla->humeral * ( 170.18 / $talla->talla) -  6.48 ) / 0.35;
+        $femoral = ( $talla->femoral * ( 170.18 / $talla->talla ) - 9.52 ) / 0.48;
+        $cabeza = ( $talla->cabeza * ( 170.18 / $talla->talla ) - 56 ) / 1.44;
+        $brazo_rel = ( $talla->brazo_relajado * ( 170.18 / $talla->talla ) - 26.89 ) / 2.33;
+        $brazo_flex = ( $talla->brazo_flex_ten * ( 170.18 / $talla->talla ) - 29.41 ) / 2.37;
+        $antebrazo = ( $talla->antebrazo * ( 170.18 / $talla->talla ) - 25.13 ) / 1.41;
+        $torax = ( $talla->torax * ( 170.18 / $talla->talla ) - 87.86 ) / 5.18;
+        $cintura = ( $talla->cintura * ( 170.18 / $talla->talla ) - 71.91 ) / 4.45;
+        $cadera_max = ( $talla->cadera_max * ( 170.18 / $talla->talla ) - 94.67 ) / 5.58;
+        $muslo_max = ( $talla->muslo_max * ( 170.18 / $talla->talla ) - 55.82 ) / 4.23;
+        $muslo_med = ( $talla->muslo_medio * ( 170.18 / $talla->talla ) - 53.2 ) / 4.56;
+        $pantorrilla_max = ( $talla->pantorrilla_max * ( 170.18 / $talla->talla ) - 35.25 ) / 2.3;
+        $triceps = ( $talla->triceps * ( 170.18 / $talla->talla ) - 15.4 ) / 4.47;
+        $subescapular = ( $talla->subescapular * ( 170.18 / $talla->talla ) - 17.2 ) / 5.07;
+        $supraespinal = ( $talla->supraespinal * ( 170.18 / $talla->talla ) - 15.4 ) / 4.47;
+        $abdominal = ( $talla->abdominal * ( 170.18 / $talla->talla ) - 25.4 ) / 7.78;
+        $pmuslo_med = ( $talla->pmuslo_medio * ( 170.18 / $talla->talla ) - 27 ) / 8.33;
+        $pantorrilla = ( $talla->pantorrilla * ( 170.18 / $talla->talla ) - 16 ) / 4.67;
+
+        return view('tallas.show', compact('id', 'atleta', 'tallas', 'i', 's6pl', 'imc', 's3pl', 'hwr', 'endo', 'meso', 'ecto', 'coord_x', 'coord_y', 'masa_corp', 'talla_sen', 'biacromial', 'torax_tran', 'torax_ant', 'bi_lio', 'humeral', 'femoral', 'cabeza', 'brazo_rel', 'brazo_flex', 'antebrazo', 'torax', 'cintura', 'cadera_max', 'muslo_max', 'muslo_med', 'pantorrilla_max', 'triceps', 'subescapular', 'supraespinal', 'abdominal', 'pmuslo_med', 'pantorrilla'));
     }
 
     /**

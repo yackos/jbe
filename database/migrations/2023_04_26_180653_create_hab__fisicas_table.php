@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('hab__fisicas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('atleta_id')->constrained();
-            $table->string('velocidad_30m');
-            $table->string('resistencia');
-            $table->string('fuerza_salto');
+            $table->float('velocidad_30m');
+            $table->float('resistencia');
+            $table->float('fuerza_salto');
             $table->string('flexibilidad');
-            $table->string('fuerza_abdom30s');
+            $table->float('fuerza_abdom30s');
             $table->longText('observaciones');
             $table->timestamps();
         });

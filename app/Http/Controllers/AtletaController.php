@@ -15,8 +15,7 @@ class AtletaController extends Controller
      */
     public function index()
     {
-        $atletas = Atleta::paginate(6);
-        
+        $atletas = Atleta::paginate(6);        
 
         return view('atletas.index', compact('atletas'));
     }

@@ -34,7 +34,7 @@
                     <tr class="bg-white border-b hover:bg-gray-50">                    
                         <th scope="row" class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap">
                             <a href="{{ route('atletas.show', $atleta) }}">
-                                <img class="w-12 rounded-full" src="{{ $atleta->imagen }}" alt="{{ $atleta->primer_nombre }} {{ $atleta->primer_apellido }}">
+                                <img class="w-12 h-12 rounded-full" src="{{ $atleta->imagen }}" alt="{{ $atleta->primer_nombre }} {{ $atleta->primer_apellido }}">
                             </a>
                             <div class="pl-3">
                                 <a href="{{ route('atletas.show', $atleta) }}">

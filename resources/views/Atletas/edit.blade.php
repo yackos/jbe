@@ -4,8 +4,8 @@
         @method('PUT')
 
         <div class="flex flex-col md:flex-row items-center max-h-96 md:max-h-48 relative">
-            <div class="w-56 md:w-40">
-                <img class="rounded-full object-cover object-center" src="{{$atleta->imagen}}" id="imgPreview">
+            <div class="w-56 h-56 md:w-40 md:h-40">
+                <img class="rounded-full object-cover object-center w-40 h-40" src="{{$atleta->imagen}}" id="imgPreview">
             </div>
 
             <div class="absolute text-center bottom-28 md:bottom-10 xl:bottom-8 md:left-4 xl:left-5">

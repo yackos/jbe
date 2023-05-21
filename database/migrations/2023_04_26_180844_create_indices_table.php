@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('indices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('talla_id');
-            $table->string('s6pl');
-            $table->string('imc');
-            $table->string('s3pl');
-            $table->string('hwr');
+            $table->float('s6pl');
+            $table->float('imc');
+            $table->float('s3pl');
+            $table->float('hwr');
             $table->timestamps();
         });
     }
