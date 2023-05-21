@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Atleta;
 use App\Models\Categoria;
+use App\Models\Talla;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -61,7 +62,11 @@ class AtletaController extends Controller
      */
     public function show(Atleta $atleta)
     {
-        return view('atletas.show', compact('atleta'));
+        $categorias = Categoria::all();
+        $phone = "(".substr($atleta->telefono,0,4).")"." ".substr($atleta->telefono,4,3)."-".substr($atleta->telefono,7,4);
+        $talla = Talla::where('atleta_id', '=' , $atleta->id)->get()->sortByDesc('created_at')->first();
+        
+        return view('atletas.show', compact('atleta', 'phone', 'categorias', 'talla'));
     }
 
     /**
@@ -112,7 +117,7 @@ class AtletaController extends Controller
         session()->flash('flash.banner', 'Atleta Actualizado con Exito');
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('atletas.edit', $atleta);
+        return redirect()->route('atletas.show', $atleta);
     }
 
     /**
